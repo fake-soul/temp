@@ -64,74 +64,122 @@ class Node
 	}
 
 }
-public class infixtopostfix{
+public class infixtopostfix
+{
 	public static void main(String[] args) 
 	{
 		
 		Scanner in=new Scanner(System.in);
 		String str = in.nextLine();
-		// char ch = str.charAt(4);
-		// log(ch);
-		postfix(str);
-		// Node stack=create();
-		// PrintList(stack);
-
-		// log("1push");
-		// stack=pushNode(stack);
-		// log("new stack");
-		// PrintList(stack);
-		// log("two pop");
-		// stack=popNode(stack);
-		// stack=popNode(stack);
-		// log("new stack");
-		// PrintList(stack);
-		// int size=StackSize(stack);
-		// log("stack size="+size);
+		String poststr=postfix(str);
 	}
-	public static void postfix(String str)
+	public static String postfix(String str)
 	{
 		int len=str.length();
+		String POSTFIXSTRING="";
+		String error="Error";
 		int StackTopPriority=0,StringPriority=0;
 		Node start= new Node('X');
 		for(int i=0;i<len;i++)
 		{
 			if((str.charAt(i)>=65 && str.charAt(i)<=90) || (str.charAt(i)>=97 && str.charAt(i)<=122))
 			{
-				log(str.charAt(i));	
+				log(str.charAt(i));
+				POSTFIXSTRING=POSTFIXSTRING+str.charAt(i);	
+				log("print Stage 1");
 			}
 			else
 			{
 				if(start.stacksize()==1)
 				{
-					start=start.push(str.charAt(i));
+					if(str.charAt(i)=='}' || str.charAt(i)==')' || str.charAt(i)==']')
+					{
+						log("error");
+						return error;
+					}
+					else
+					{
+						start=start.push(str.charAt(i));
+					}
 				}
 				else if(start.stacksize()<1)
 				{
 					log("error");
-					return;
+					return error;
 				}
 				else
 				{
-					StackTopPriority=getpriorty(start.top());
-					StringPriority=getpriorty(str.charAt(i));
-					if(StackTopPriority>=StringPriority)
+					if(str.charAt(i)=='{' || str.charAt(i)=='(' || str.charAt(i)=='[')
 					{
-						log(start.top());
-						start=start.pop();
 						start=start.push(str.charAt(i));
 					}
-					else{
-						// log(str.charAt(i));
-						start=start.push(str.charAt(i));
+					else if(str.charAt(i)=='}' || str.charAt(i)==')' || str.charAt(i)==']')
+					{
+						if(start.stacksize()<=1)
+						{
+							log("Error");
+							return error;
+						}
+						else
+						{
+							while(start.stacksize()>1)
+							{
+								if(start.top()=='{' || start.top()=='(' || start.top()=='[')
+								{
+									start=start.pop();
+									break;
+								}
+								else
+								{
+									log(start.top());
+									log("print Stage 2");
+									POSTFIXSTRING=POSTFIXSTRING+start.top();
+									start=start.pop();
+								}
+							}
+						}
+					}
+					else
+					{
+						StackTopPriority=getpriorty(start.top());
+						StringPriority=getpriorty(str.charAt(i));
+						if(StackTopPriority>=StringPriority)
+						{
+							if(start.top()!='{' && start.top()!='(' && start.top()!='[')
+							{
+								log(start.top());
+								POSTFIXSTRING=POSTFIXSTRING+start.top();
+								log("print Stage 3");
+							}
+							start=start.pop();
+							start=start.push(str.charAt(i));
+						}
+						else{
+							// log(str.charAt(i));
+							start=start.push(str.charAt(i));
+						}
 					}
 				}
 			}
 		}
 		while(start.stacksize()!=1)
 		{
-			log(start.top());
-			start=start.pop();
+			if(start.top()!='{' &&  start.top()!='(' && start.top()!='[')
+			{	
+				log(start.top());
+				POSTFIXSTRING=POSTFIXSTRING+start.top();
+				log("print Stage 4");
+				start=start.pop();
+			}
+			else
+			{
+				log("error");
+				return error;
+			}
+			
 		}
+		log("String is"+POSTFIXSTRING);
+		return POSTFIXSTRING;
 	}
 	public static int getpriorty(char ch)
 	{
