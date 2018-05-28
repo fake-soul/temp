@@ -64,25 +64,28 @@ class Node
 	}
 
 }
-public class infixtopostfixBrace
+public class infixtopostfix
 {
 	public static void main(String[] args) 
 	{
 		
 		Scanner in=new Scanner(System.in);
 		String str = in.nextLine();
-		postfix(str);
+		String poststr=postfix(str);
 	}
-	public static void postfix(String str)
+	public static String postfix(String str)
 	{
 		int len=str.length();
+		String POSTFIXSTRING="";
+		String error="Error";
 		int StackTopPriority=0,StringPriority=0;
 		Node start= new Node('X');
 		for(int i=0;i<len;i++)
 		{
 			if((str.charAt(i)>=65 && str.charAt(i)<=90) || (str.charAt(i)>=97 && str.charAt(i)<=122))
 			{
-				log(str.charAt(i));	
+				log(str.charAt(i));
+				POSTFIXSTRING=POSTFIXSTRING+str.charAt(i);	
 				log("print Stage 1");
 			}
 			else
@@ -92,7 +95,7 @@ public class infixtopostfixBrace
 					if(str.charAt(i)=='}' || str.charAt(i)==')' || str.charAt(i)==']')
 					{
 						log("error");
-						return;
+						return error;
 					}
 					else
 					{
@@ -102,7 +105,7 @@ public class infixtopostfixBrace
 				else if(start.stacksize()<1)
 				{
 					log("error");
-					return;
+					return error;
 				}
 				else
 				{
@@ -115,7 +118,7 @@ public class infixtopostfixBrace
 						if(start.stacksize()<=1)
 						{
 							log("Error");
-							return ;
+							return error;
 						}
 						else
 						{
@@ -130,6 +133,7 @@ public class infixtopostfixBrace
 								{
 									log(start.top());
 									log("print Stage 2");
+									POSTFIXSTRING=POSTFIXSTRING+start.top();
 									start=start.pop();
 								}
 							}
@@ -141,9 +145,10 @@ public class infixtopostfixBrace
 						StringPriority=getpriorty(str.charAt(i));
 						if(StackTopPriority>=StringPriority)
 						{
-							if(start.top()!='{' || start.top()!='(' || start.top()!='[')
+							if(start.top()!='{' && start.top()!='(' && start.top()!='[')
 							{
 								log(start.top());
+								POSTFIXSTRING=POSTFIXSTRING+start.top();
 								log("print Stage 3");
 							}
 							start=start.pop();
@@ -159,19 +164,22 @@ public class infixtopostfixBrace
 		}
 		while(start.stacksize()!=1)
 		{
-			if(start.top()!='{' && start.top()!='(' && start.top()!='[')
+			if(start.top()!='{' &&  start.top()!='(' && start.top()!='[')
 			{	
 				log(start.top());
+				POSTFIXSTRING=POSTFIXSTRING+start.top();
 				log("print Stage 4");
 				start=start.pop();
 			}
 			else
 			{
 				log("error");
-				return;
+				return error;
 			}
 			
 		}
+		log("String is"+POSTFIXSTRING);
+		return POSTFIXSTRING;
 	}
 	public static int getpriorty(char ch)
 	{
