@@ -159,7 +159,7 @@ public class infixtopostfixBrace
 		}
 		while(start.stacksize()!=1)
 		{
-			if(start.top()!='{' || start.top()!='(' || start.top()!='[')
+			if(start.top()!='{' && start.top()!='(' && start.top()!='[')
 			{	
 				log(start.top());
 				log("print Stage 4");
