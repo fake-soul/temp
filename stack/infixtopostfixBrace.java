@@ -89,7 +89,15 @@ public class infixtopostfixBrace
 			{
 				if(start.stacksize()==1)
 				{
-					start=start.push(str.charAt(i));
+					if(str.charAt(i)=='}' || str.charAt(i)==')' || str.charAt(i)==']')
+					{
+						log("error");
+						return;
+					}
+					else
+					{
+						start=start.push(str.charAt(i));
+					}
 				}
 				else if(start.stacksize()<1)
 				{
@@ -155,8 +163,14 @@ public class infixtopostfixBrace
 			{	
 				log(start.top());
 				log("print Stage 4");
+				start=start.pop();
 			}
-			start=start.pop();
+			else
+			{
+				log("error");
+				return;
+			}
+			
 		}
 	}
 	public static int getpriorty(char ch)
