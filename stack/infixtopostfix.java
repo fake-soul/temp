@@ -121,7 +121,8 @@ public class infixtopostfix{
 						start=start.push(str.charAt(i));
 					}
 					else{
-						log(str.charAt(i));
+						// log(str.charAt(i));
+						start=start.push(str.charAt(i));
 					}
 				}
 			}
