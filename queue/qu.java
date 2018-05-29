@@ -58,6 +58,7 @@
 		public void printlist()
 		{
 			Node start=this;
+			start=start.next;
 			while(start!=null)
 			{
 				log(start.data);
@@ -96,6 +97,7 @@
 				log("more??");
 				num=in.nextInt();
 			}
+			start.printlist();
 			log("dequeue??");
 			log("size "+start.queuesize());
 			num=in.nextInt();
