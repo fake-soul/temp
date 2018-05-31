@@ -111,7 +111,7 @@ class Node
 			System.out.println(data);
 		}
 }
-public class DoublyQueue
+public class DoubleSideQueue
 {
 	public static void main(String args[]) 
 	{
