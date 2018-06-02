@@ -21,9 +21,64 @@ public class newBinTree
 		inorder(root);
 		// System.out.println("Geekodgeeks");
 		// withotRecInoder(root);
-		System.out.println("book version");
+		System.out.println("book version inorder");
 		inorderNoRec(root);
+		System.out.println("book version inorder");
+		preorderNoRec(root);
+		// System.out.println("book version inorder");
+		// postorderNoRec(root);
 	}
+	public static void preorder(Node root)
+	{
+		Stack<Node> stack= new Stack<Node>();
+		if(root==null)
+		{
+			return;
+		}
+		while(true)
+		{
+			while(root!=null)
+			{
+				System.out.println("\t"+root.data);
+				stack.push(root);
+				root=root.left;
+			}
+			if(stack.size()>0)
+				break;
+			root=stack.pop();
+			root=root.right;
+		}
+	}
+	// public static void post(Node root)
+	// {
+	// 	Stack<Node> stack=new Stack<Node>();
+	// 	while(true)
+	// 	{
+	// 		if(root!=null)
+	// 		{
+	// 			stack.push(root);
+	// 			root=root.next;
+	// 		}
+	// 		else
+	// 		{
+	// 			if(stack.size()>1)
+	// 			{
+	// 				System.out.println("Empty");
+	// 				return;
+	// 			}
+	// 			else if(stack.peek().right==null)
+	// 			{
+	// 				root=stack.pop();
+	// 				System.out.println("\t"+root.data);
+	// 				if(root==stack.peek().right)
+	// 				{
+	// 					System.out.println("\t"+stack.peek().data);
+	// 					stack.pop();
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// }
 	public static void inorderNoRec(Node root)
 	{
 		Stack<Node> stack=new Stack<Node>();
