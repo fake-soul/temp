@@ -1,0 +1,13 @@
+3-way-Merge Sort : Suppose that instead of dividing in half at each step of Merge Sort, you divide into thirds, sort each third, and finally combine all of them using a three-way merge subroutine. What is the overall asymptotic running time of this algorithm? (Hint: Note that the merge step can still be implemented in O(n)O(n) time.) n^2\log(n)
+
+You are given functions ff and gg such that f(n)=O(g(n))f(n)=O(g(n)). Is f(n)*log2(f(n)^c) = O(g(n)*log2(f(n)))f(n)∗log 2 ​ (f(n) c )=O(g(n)∗log 2 ​ (g(n))) ? (Here cc is some positive constant.) You should assume that ff and gg are nondecreasing and always bigger than 1.
+
+Assume again two (positive) nondecreasing functions ff and gg such that f(n)=O(g(n))f(n)=O(g(n)). Is 2^{f(n)}=O(2^{g(n)})2 f(n) =O(2 g(n) ) ? (Multiple answers may be correct, you should check all of those that apply.)
+
+k-way-Merge Sort. Suppose you are given kk sorted arrays, each with nn elements, and you want to combine them into a single array of known elements. Consider the following approach. Using the merge subroutine taught in lecture, you merge the first 2 arrays, then merge the 3^{rd}3 rd given array with this merged version of the first two arrays, then merge the 4^{th}4 th given array with the merged version of the first three arrays, and so on until you merge in the final (k^{th}k th ) input array. What is the running time taken by this successive merging algorithm, as a function of kk and nn? (Optional: can you think of a faster way to do the k-way merge procedure ?) \theta(nk)θ(nk) \theta(n^2k)θ(n 2 k) \theta(nk^2)θ(nk 2 ) \theta(n \log(n))θ(log(k))
+
+Arrange the following functions in increasing order of growth rate (with g(n)g(n) following f(n)f(n) in your list if and only if f(n)=O(g(n))f(n)=O(g(n))). a)2^{2^n}2 2 n b)2^{n^2}2 n 2 c)n^2\log(n)n 2 log(n) d)nn e)n^{2^n}n 2 n
+
+You are given functions ff and gg such that f(n)=O(g(n))f(n)=O(g(n)). Is f(n)*log2(f(n)^c) = O(g(n)*log2(f(n)))f(n)∗log 2 ​ (f(n) c )=O(g(n)∗log 2 ​ (g(n))) ? (Here cc is some positive constant.) You should assume that ff and gg are nondecreasing and always bigger than 1. Sometimes yes, sometimes no, depending on the constant cc This should not be selected Sometimes yes, sometimes no, depending on the functions ff and gg True False
+
+8539734222673567065463550869546574495034888535765114961879601127067743044893204848617875072216249073013374895871952806582723184
