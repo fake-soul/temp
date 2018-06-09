@@ -24,15 +24,14 @@ public class CheckMirrorImage
 		System.out.println("2nd tree");
 		preorder(root2);	
 		// PrintPath(root1, array,len);
-		Node root3=MirrorImage(root1);	
-		Boolean equal=AreEqual(root1,root3);
-		if(equal==true)
-			System.out.println("They are MirrorImage ");
+		Boolean res=AreMirrorEqual(root1,root2);
+		if(res==true)
+			System.out.println("MirrorImage ");
 		else
-			System.out.println("Not equal");
+			System.out.println("Not MirrorImage");
 
 	} 
-	public static Boolean AreEqual(Node root1,Node root2)
+	public static Boolean AreMirrorEqual(Node root1,Node root2)
 	{
 		if(root1==null && root2==null)
 			return true;
@@ -40,21 +39,8 @@ public class CheckMirrorImage
 			return false;
 		else
 		{
-			return (root1.data==root2.data && AreEqual(root1.left,root2.left) && AreEqual(root1.right,root2.right));
+			return (AreMirrorEqual(root1.left,root2.right) && AreMirrorEqual(root1.right,root2.left));
 		}
-	}
-	public static Node MirrorImage(Node root)
-	{
-		Node tempNode=root;
-		if(root!=null)
-		{
-			MirrorImage(root.left);
-			MirrorImage(root.right);
-			tempNode=root.left;
-			root.left=root.right;
-			root.right=tempNode;	
-		}
-		return root;
 	}
 	public static void swap(Node root1,Node root2)
 	{
