@@ -36,6 +36,84 @@ public class BasicOper
 			preoderRec(root.right);
 		}
 	}
+	// void DELETEfun(int key)
+	// {
+	// 	root=DELETE_FUN(root,key);
+	// }
+	// Node DELETE_FUN(Node root,int key)
+	// {
+	// 	if(root==null)
+	// 	{
+	// 		System.out.println("Not there");
+	// 	}
+	// 	else if(key<root.data)
+	// 	{
+	// 		DELETE_FUN(root.left,key);
+	// 	}
+	// 	else if(key>root.data)
+	// 	{
+	// 		DELETE_FUN(root.right,key);
+	// 	}
+	// 	else
+	// 	{
+	// 		if(root.left!=null && root.right!=null)
+	// 		{
+	// 			//repalce with largest in left Sub tree
+	// 			int temp=MAXVALUE(root.left);
+	// 			root.data=temp;
+	// 			root.left=DELETE_FUN(root.left,root.data);
+	// 		}
+	// 		else
+	// 		{
+	// 			//Single child
+	// 			Node temp2=root;
+	// 			if(root.left==null)
+	// 				root=root.left;
+	// 			if(root.right==null)
+	// 				root=root.right;
+
+	// 		}
+	// 	}
+	// 	return root;
+	// }
+	 // This method mainly calls deleteRec()
+    void deleteKey(int key)
+    {
+        root = deleteRec(root, key);
+    }
+ 
+    /* A recursive function to insert a new key in BST */
+    Node deleteRec(Node root, int key)
+    {
+        /* Base Case: If the tree is empty */
+        if (root == null)  return root;
+ 
+        /* Otherwise, recur down the tree */
+        if (key < root.data)
+            root.left = deleteRec(root.left, key);
+        else if (key > root.data)
+            root.right = deleteRec(root.right, key);
+ 
+        // if key is same as root's key, then This is the node
+        // to be deleted
+        else
+        {
+            // node with only one child or no child
+            if (root.left == null)
+                return root.right;
+            else if (root.right == null)
+                return root.left;
+ 
+            // node with two children: Get the inorder successor (smallest
+            // in the right subtree)
+            root.data = MINVALUE(root.right);
+ 
+            // Delete the inorder successor
+            root.right = deleteRec(root.right, root.data);
+        }
+ 
+        return root;
+    }
 	int MINVLAUE_fun()
 	{
 		int value=MINVALUE(root);
@@ -162,6 +240,13 @@ public class BasicOper
 		{
 			int max_value=bst.MAXVALUE_fun();
 			System.out.println("max_value => "+max_value);
+		}
+		if(ch==5)
+		{
+			int deletevalue=in.nextInt();
+			bst.deleteKey(deletevalue);
+			System.out.println();
+			bst.preoder();
 		}
 	}
 }	
