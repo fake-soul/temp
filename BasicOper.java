@@ -36,6 +36,33 @@ public class BasicOper
 			preoderRec(root.right);
 		}
 	}
+	int MINVLAUE_fun()
+	{
+		int value=MINVALUE(root);
+		return value;
+	}
+	int MINVALUE(Node root)
+	{
+		if(root==null)
+			return -99;
+		else if(root.left==null)
+			return root.data;
+		else
+			return MINVALUE(root.left);
+	}
+	int MAXVALUE_fun()
+	{
+		return MAXVALUE(root);
+	}
+	int MAXVALUE(Node root)
+	{
+		if(root==null)
+			return -99;
+		else if(root.right==null)
+			return root.data;
+		else
+			return MAXVALUE(root.right);
+	}
 	Boolean FIND_BST(Node root,int key)
 	{
 		Boolean res=false;
@@ -117,7 +144,7 @@ public class BasicOper
 			else
 				System.out.println("Nope Not there");
 		}
-		if(ch==2)
+		if(ch==2) //BST Method
 		{
 			int findval=in.nextInt();
 			Boolean res= bst.FINDFunBST(findval);
@@ -125,6 +152,16 @@ public class BasicOper
 				System.out.println("Found it");
 			else
 				System.out.println("Nope Not there");
+		}
+		if(ch==3)   // MIn value
+		{
+			int min_value=bst.MINVLAUE_fun();
+			System.out.println("min_value = "+min_value);
+		}
+		if(ch==4)
+		{
+			int max_value=bst.MAXVALUE_fun();
+			System.out.println("max_value => "+max_value);
 		}
 	}
 }	
