@@ -7,17 +7,17 @@ public class Hamming
 		int[] array=inputArray();
 		log("Array :>");
 		printArray(array);
-		int[] sortedArray = sort(array);
-		log("sorted Array :>");
-		printArray(sortedArray);
-		Scanner in = new Scanner(System.in);
-		Random rand = new Random();
-		int rotateBY=1+rand.nextInt((sortedArray.length)-1);
-		log("Roted BY :> "+rotateBY);	
-		int[] rotatedArray=ROTATE(sortedArray,rotateBY);
-		log("Roted array :>");
-		printArray(rotatedArray);
-		log("HammingDist > "+HammingDist(rotatedArray));
+// 		int[] sortedArray = sort(array);
+// 		log("sorted Array :>");
+// 		printArray(sortedArray);
+// 		Scanner in = new Scanner(System.in);
+// 		Random rand = new Random();
+// 		int rotateBY=1+rand.nextInt((sortedArray.length)-1);
+// 		log("Roted BY :> "+rotateBY);	
+// 		int[] rotatedArray=ROTATE(sortedArray,rotateBY);
+// 		log("Roted array :>");
+// 		printArray(rotatedArray);
+		log("HammingDist > "+HammingDist(array));
 		// int sum_value=in.nextInt();
 		// log("Search Result => "+search_function(rotatedArray,rotatedArray.length,sum_value));
 		// int min_value=minValue(rotatedArray,0,(rotatedArray.length)-1);
@@ -32,13 +32,9 @@ public class Hamming
 			a=rotatebysingle(a);
 			if(Arrays.equals(a,rotatedArray))
 			{
-				log("Equal Array");
-				printArray(a);
 				break;
 			}
 			count++;
-			log("not equal Array :>");
-			printArray(a);
 			if(count==rotatedArray.length)
 				break;
 		}
